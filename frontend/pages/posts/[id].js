@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components"
 import { useRouter } from 'next/router'
 import api from "../../utils/api";
+import Link from 'next/link';
 
 const Wrapper = styled.div`
   width: 50vh;
@@ -56,16 +57,20 @@ export default () => {
     return <></>;
   }
 
-  const { title, content, nickname, invite_url, created_at } = post;
+  const { title, content, nickname, invite_url, category, created_at } = post;
 
   return (
     <>
       <Wrapper>
         <h1>{title}</h1>
-        <h3>{invite_url}</h3>
+        <Link
+          href={invite_url}
+        >
+          <h3 style={{ color: 'blue', cursor: 'pointer' }}>{invite_url}</h3>
+        </Link>
 
-        <span>작성자: {nickname}</span>
-        <p>카테고리: 제페토</p>
+        <span>작성자: <strong>{nickname}</strong></span>
+        <p>카테고리: <strong>{category.name}</strong></p>
 
         <Content>
           {content}

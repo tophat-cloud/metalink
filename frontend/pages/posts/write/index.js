@@ -32,6 +32,21 @@ const MainInput = styled.input`
   }
 `;
 
+const HalfInput = styled(MainInput)`
+  width: 49%;
+  height: 44px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #0070f3;
+  display: block;
+  margin: 0 0 1em;
+  padding: ${props => props.padding};
+
+  ::placeholder {
+    color: #0070f3;
+  }
+`;
+
 const SelectBox = styled.select`
   height: 44px;
   margin-left: 12px;
@@ -67,7 +82,7 @@ const SubmitButton = styled.button`
   justify-content: center;
   align-items: center;
   color: white;
-  background: lightgray;
+  background: #0070f3;
 `;
 
 
@@ -87,7 +102,7 @@ export default () => {
   
   const onSubmit = async (form) => {
     const { category } = form;
-    form.category = categories.find(({ name }) => name === category) || 0;
+    form.category = (categories.find(({ name }) => name === category) || {}).id || 0;
 
     const params = new URLSearchParams()
     for (const [key, value] of Object.entries(form)) {
@@ -136,12 +151,12 @@ export default () => {
         />
 
         <LoginWrapper>
-          <MainInput
+          <HalfInput
             placeholder="닉네임을 입력해주세요"
             {...register('nickname')}
           />
 
-          <MainInput
+          <HalfInput
             placeholder="패스워드를 입력해주세요"
             {...register('password')}
             type="password"
