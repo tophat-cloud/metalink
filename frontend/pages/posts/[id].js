@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components"
+import { useRouter } from 'next/router'
+import api from "../../utils/api";
 
 const Wrapper = styled.div`
   width: 50vh;
@@ -63,18 +66,37 @@ const ReturnButton = styled.a`
 
 
 export default () => {
+  const router = useRouter();
+  const { id } = router.query;
+  const [post, setPost] = useState();
+
+  useEffect(() => {
+    if (!id) return;
+    loadPost();
+  }, [id]);
+
+  const loadPost = async () => {
+    const { data } = await api.get(`board/${id}`);
+    setPost(data);
+  }
+
+  if (!post) {
+    return <></>;
+  }
+
+  const { title, content, nickname, invite_url, created_at } = post;
+
   return (
     <>
       <Wrapper>
-        <h1>우르릉의 세계로 초대합니다 :)</h1>
-        <h3>https://metaworld.com</h3>
+        <h1>{title}</h1>
+        <h3>{invite_url}</h3>
 
-        <span>작성자: 우르릉</span>
+        <span>작성자: {nickname}</span>
         <p>카테고리: 제페토</p>
 
         <Content>
-          안농! 내 이름은 우르릉!
-          너를 내 세계에 초대하지 :)
+          {content}
         </Content>
 
         <ReturnButton href="/">
