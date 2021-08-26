@@ -14,7 +14,7 @@ const TitleWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const TitleInput = styled.input`
+const MainInput = styled.input`
   width: 100%;
   height: 44px;
   padding: 12px;
@@ -35,20 +35,6 @@ const SelectBox = styled.select`
   padding: 0 4px;
 `;
 
-const LinkInput = styled.input`
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #0070f3;
-  display: block;
-  margin: 0 0 1em;
-  padding: ${props => props.padding};
-
-  ::placeholder {
-    color: #0070f3;
-  }
-`;
-
 const ContentInput = styled.textarea`
   width: 100%;
   padding: 12px;
@@ -61,6 +47,12 @@ const ContentInput = styled.textarea`
   ::placeholder {
     color: #0070f3;
   }
+`;
+
+const LoginWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const SubmitButton = styled.button`
@@ -82,7 +74,7 @@ export default () => {
     '카테고리2',
     '카테고리3',
     '카테고리4',
-  ]
+  ];
 
   return (
     <>
@@ -90,7 +82,7 @@ export default () => {
       <Wrapper>
 
         <TitleWrapper>
-          <TitleInput
+          <MainInput
             placeholder="제목을 입력해주세요."
           />
 
@@ -103,7 +95,7 @@ export default () => {
           </SelectBox>
         </TitleWrapper>
 
-        <LinkInput
+        <MainInput
           placeholder="링크를 입력해주세요."
         />
 
@@ -111,11 +103,21 @@ export default () => {
           placeholder="내용을 입력해주세요."
         />
 
+        <LoginWrapper>
+          <MainInput
+            placeholder="닉네임을 입력해주세요"
+          />
+
+          <MainInput
+            placeholder="패스워드를 입력해주세요"
+            type="password"
+          />
+        </LoginWrapper>
+
         <SubmitButton>
           작성 완료
         </SubmitButton>
       </Wrapper>
-
     </>
   )
 }
