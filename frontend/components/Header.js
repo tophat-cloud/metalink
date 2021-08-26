@@ -16,8 +16,15 @@ const Name = styled.strong`
   color: white;
 `;
 
-const WriteButton = styled.button`
-
+const WriteButton = styled.a`
+  display: flex;
+  border: 1px solid white;
+  border-radius: 8px;
+  width: 100px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  color: white;
 `;
 
 export default () => {
@@ -27,7 +34,7 @@ export default () => {
         Metalink
       </Name>
 
-      <WriteButton>
+      <WriteButton href='/posts/write'>
         글쓰기
       </WriteButton>
     </Header>
