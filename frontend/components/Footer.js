@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const Footer = styled.footer`
   width: 100%;
@@ -13,16 +14,16 @@ const Footer = styled.footer`
 export default () => {
   return (
     <Footer>
-      <a
+      <Link
         href="/"
-        target="_blank"
-        rel="noopener noreferrer"
       >
+        <a>
         Powered by{' '}
         <strong>
           TopHat
         </strong>
-      </a>
+        </a>
+      </Link>
     </Footer>
   );
 };
