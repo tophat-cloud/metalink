@@ -1,7 +1,21 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
+import Head from 'next/head'
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+export default ({ Component, pageProps }) => {
+  return (
+    <>
+      <Head>
+        <title>Meta Link</title>
+        <meta name="description" content="This is metalink from tophat" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Header/>
 
-export default MyApp
+      <Component {...pageProps} />
+
+      <Footer/>
+    </>
+  )
+};
