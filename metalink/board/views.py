@@ -3,13 +3,13 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.hashers import check_password
 
-from .serializers import ArticleSerializer
+from .serializers import ArticleSerializer, CreateArticleSerializer
 from .models import Article
 
 
 class ArticleListView(APIView):
     def get(self, request):
-        article_serializer = ArticleSerializer(Article.objects.all())
+        article_serializer = ArticleSerializer(Article.objects.all(), many=True)
         return Response(article_serializer.data, status=status.HTTP_200_OK)
  
 
@@ -39,13 +39,13 @@ class ArticleDetailView(APIView):
             return Response("article not exists", status=status.HTTP_400_BAD_REQUEST)
 
 
-class ArticleCreateView(APIView):
+class CreateArticleView(APIView):
     def post(self, request):
-        article_serializer = ArticleSerializer(data=request.data)
+        article_serializer = CreateArticleSerializer(data=request.data)
 
         if article_serializer.is_valid():
             article_serializer.save()
-            return Response(article_serializer.data, status=status.HTTP_201_CREATED)
+            return Response("article created", status=status.HTTP_201_CREATED)
         else:
             return Response(article_serializer.error, status=status.HTTP_400_BAD_REQUEST)
  
