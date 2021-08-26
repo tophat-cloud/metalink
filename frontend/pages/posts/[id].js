@@ -11,38 +11,10 @@ const Wrapper = styled.div`
   padding: 64px 0;
 `;
 
-const TitleInput = styled.strong`
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #0070f3;
-  display: block;
-  margin: 0 0 1em;
-  padding: ${props => props.padding};
-
-  ::placeholder {
-    color: #0070f3;
-  }
-`;
-
-const LinkInput = styled.strong`
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #0070f3;
-  display: block;
-  margin: 0 0 1em;
-  padding: ${props => props.padding};
-
-  ::placeholder {
-    color: #0070f3;
-  }
-`;
-
 const Content = styled.div`
   width: 100%;
   padding: 12px;
-  height: 50%;
+  height: 20vh;
   border: 1px solid #0070f3;
   margin-top: 20px;
   display: block;

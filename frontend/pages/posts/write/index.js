@@ -41,7 +41,7 @@ const SelectBox = styled.select`
 const ContentInput = styled.textarea`
   width: 100%;
   padding: 12px;
-  height: 50%;
+  height: 20vh;
   border: 1px solid #0070f3;
   display: block;
   margin: 0 0 1em;
