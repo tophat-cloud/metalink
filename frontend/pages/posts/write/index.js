@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import styled from "styled-components"
+import api from "../../../utils/api";
 
 const Wrapper = styled.div`
   width: 50vh;
@@ -69,12 +71,16 @@ const SubmitButton = styled.button`
 
 
 export default () => {
-  const categories = [
-    '카테고리1',
-    '카테고리2',
-    '카테고리3',
-    '카테고리4',
-  ];
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    loadCategory();
+  }, [])
+
+  const loadCategory = async () => {
+    const { data } = await api.get('board/category');
+    setCategories(data);
+  };
 
   return (
     <>
@@ -88,8 +94,8 @@ export default () => {
 
           <SelectBox>
             {
-              categories.map(v => (
-                <option>{v}</option>
+              categories.map(({ id, name }) => (
+                <option key={id}>{name}</option>
               ))
             }
           </SelectBox>
