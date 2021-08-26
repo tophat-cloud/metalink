@@ -21,7 +21,7 @@ export default ({ Component, pageProps }) => {
         </main>
       </div>
 
-      <Footer/>
+      <Footer/> 
     </>
   )
 };
