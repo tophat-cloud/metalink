@@ -6,7 +6,7 @@ export default () => {
 
   return (
     <>
-     <h1 className={styles.title}>
+      <h1 className={styles.title}>
         Welcome to <a href="https://nextjs.org">MetaLink!</a>
       </h1>
 
