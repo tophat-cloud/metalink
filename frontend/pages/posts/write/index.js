@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from "styled-components"
 import api from "../../../utils/api";
+import { useForm } from "react-hook-form";
 
 const Wrapper = styled.div`
   width: 50vh;
@@ -72,6 +73,8 @@ const SubmitButton = styled.button`
 
 export default () => {
   const [categories, setCategories] = useState([]);
+  const { register, handleSubmit } = useForm();
+
 
   useEffect(() => {
     loadCategory();
@@ -80,6 +83,24 @@ export default () => {
   const loadCategory = async () => {
     const { data } = await api.get('board/category');
     setCategories(data);
+  };
+  
+  const onSubmit = async (form) => {
+    const { category } = form;
+    form.category = categories.find(({ name }) => name === category) || 0;
+
+    const params = new URLSearchParams()
+    for (const [key, value] of Object.entries(form)) {
+      params.append(key, value);
+    }
+
+    await api.post('/board/create', params, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    });
+    alert('작성이 완료되었습니다!');
+    window.location.href = '/';
   };
 
   return (
@@ -90,9 +111,12 @@ export default () => {
         <TitleWrapper>
           <MainInput
             placeholder="제목을 입력해주세요."
+            {...register('title')}
           />
 
-          <SelectBox>
+          <SelectBox
+            {...register('category')}
+          >
             {
               categories.map(({ id, name }) => (
                 <option key={id}>{name}</option>
@@ -103,24 +127,30 @@ export default () => {
 
         <MainInput
           placeholder="링크를 입력해주세요."
+          {...register('invite_url')}
         />
 
         <ContentInput
           placeholder="내용을 입력해주세요."
+          {...register('content')}
         />
 
         <LoginWrapper>
           <MainInput
             placeholder="닉네임을 입력해주세요"
+            {...register('nickname')}
           />
 
           <MainInput
             placeholder="패스워드를 입력해주세요"
+            {...register('password')}
             type="password"
           />
         </LoginWrapper>
 
-        <SubmitButton>
+        <SubmitButton
+          onClick={handleSubmit(onSubmit)}
+        >
           작성 완료
         </SubmitButton>
       </Wrapper>
