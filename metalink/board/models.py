@@ -9,7 +9,7 @@ class Article(models.Model):
     password = models.CharField(max_length=128)
     title = models.CharField(max_length=255)
     content = models.TextField()
-    created_at = models.TimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     invite_url = models.URLField(max_length=255)
 
 
