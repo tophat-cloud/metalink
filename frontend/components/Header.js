@@ -10,8 +10,9 @@ const Header = styled.div`
   padding: 0 20px;
 `;
 
-const Name = styled.strong`
+const Name = styled.a`
   line-height: 80px;
+  font-weight: 600;
   font-size: 24px;
   color: white;
 `;
@@ -30,7 +31,7 @@ const WriteButton = styled.a`
 export default () => {
   return (
     <Header>
-      <Name>
+      <Name href='/'>
         Metalink
       </Name>
 
