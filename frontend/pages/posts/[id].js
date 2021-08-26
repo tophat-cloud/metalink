@@ -57,7 +57,7 @@ export default () => {
     return <></>;
   }
 
-  const { title, content, nickname, invite_url, created_at } = post;
+  const { title, content, nickname, invite_url, category, created_at } = post;
 
   return (
     <>
@@ -70,7 +70,7 @@ export default () => {
         </Link>
 
         <span>작성자: <strong>{nickname}</strong></span>
-        <p>카테고리: <strong>제페토</strong></p>
+        <p>카테고리: <strong>{category.name}</strong></p>
 
         <Content>
           {content}

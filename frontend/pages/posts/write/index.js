@@ -102,7 +102,7 @@ export default () => {
   
   const onSubmit = async (form) => {
     const { category } = form;
-    form.category = categories.find(({ name }) => name === category).id || 0;
+    form.category = (categories.find(({ name }) => name === category) || {}).id || 0;
 
     const params = new URLSearchParams()
     for (const [key, value] of Object.entries(form)) {
