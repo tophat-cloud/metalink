@@ -18,6 +18,7 @@ const Content = styled.div`
   height: 20vh;
   border: 1px solid #0070f3;
   margin-top: 20px;
+  line-height: 24px;
   display: block;
   margin: 0 0 1em;
   padding: ${props => props.padding};
@@ -73,7 +74,11 @@ export default () => {
         <p>카테고리: <strong>{category.name}</strong></p>
 
         <Content>
-          {content}
+          {content.split('\n').map(v => (
+            <div>
+              {v}
+            </div>
+          ))}
         </Content>
 
         <ReturnButton href="/">
