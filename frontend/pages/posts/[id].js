@@ -38,6 +38,19 @@ const ReturnButton = styled.a`
   background-color: gray;
 `;
 
+const DeleteButton = styled.a`
+  display: flex;
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 8px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: red;
+  margin-bottom: 12px;
+`;
+
 
 export default () => {
   const router = useRouter();
@@ -60,6 +73,32 @@ export default () => {
 
   const { title, content, nickname, invite_url, category, created_at } = post;
 
+  const onDelete = async () => {
+    const password = prompt("비밀번호를 입력하세요.");
+
+    const params = new URLSearchParams()
+    for (const [key, value] of Object.entries({ nickname, password })) {
+      params.append(key, value);
+    }
+
+    try {
+      await api.delete(`board/${id}`,
+        {
+          data: params,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        },
+      );
+    } catch (err) {
+      alert('비밀번호가 일치하지 않습니다 :(');
+      return;
+    }
+    
+    alert('삭제되었습니다!');
+    window.location.href = '/';
+  };
+
   return (
     <>
       <Wrapper>
@@ -81,7 +120,11 @@ export default () => {
           ))}
         </Content>
 
-        <ReturnButton href="/">
+        <DeleteButton onClick={onDelete}>
+          삭제
+        </DeleteButton>
+
+        <ReturnButton href='/'>
           메인 화면
         </ReturnButton>
       </Wrapper>
