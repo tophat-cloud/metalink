@@ -2,6 +2,7 @@ import styles from '../styles/Home.module.css'
 
 export default ({ data }) => {
   const { id, title, content } = data;
+
   return (
     <a
       key={id}

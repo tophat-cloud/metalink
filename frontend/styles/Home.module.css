@@ -88,6 +88,12 @@
   width: 45%;
 }
 
+@media (max-width:480px)  { 
+  .card {
+    width: auto;
+  }
+}
+
 .card:hover,
 .card:focus,
 .card:active {
