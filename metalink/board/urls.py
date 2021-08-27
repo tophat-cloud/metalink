@@ -21,4 +21,5 @@ urlpatterns = [
     path('', views.ArticleListView.as_view(), name='article_list'),
     path('<int:article_id>', views.ArticleDetailView.as_view(), name='article_detail'),
     path('create', views.CreateArticleView.as_view(), name='article_create'),
+    path('category', views.CategoryListView.as_view(), name='category_list'),
 ]
