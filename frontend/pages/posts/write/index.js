@@ -101,7 +101,31 @@ export default () => {
   };
   
   const onSubmit = async (form) => {
-    const { category } = form;
+    const { category, password, invite_url } = form;
+
+    for (const [k, v] of Object.entries(form)) {
+      if (k === 'category') {
+        continue;
+      }
+      if (!v) {
+        alert('양식을 모두 채워주세요!');
+        return;
+      }
+    }
+
+    const urlReg = /(http(s)?:\/\/)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}/gi;
+    if (!urlReg.test(invite_url)) {
+      alert('올바른 URL 형식을 사용해주세요 (ex_ http://www.naver.com)');
+      return;
+    }
+
+    const pwReg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    if (!pwReg.test(password)) {
+      alert('올바른 패스워드 형식을 사용해주세요 (문자 + 숫자 + 특수문자 최소 8자리)');
+      return;
+    }
+
+
     form.category = (categories.find(({ name }) => name === category) || {}).id || 0;
 
     const params = new URLSearchParams()
