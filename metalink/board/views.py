@@ -53,5 +53,5 @@ class CreateArticleView(APIView):
             article_serializer.save()
             return Response("article created", status=status.HTTP_201_CREATED)
         else:
-            return Response(article_serializer.error, status=status.HTTP_400_BAD_REQUEST)
+            return Response(article_serializer.error, status=status.HTTP_406_NOT_ACCEPTABLE)
  
