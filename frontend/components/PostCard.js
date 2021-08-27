@@ -10,7 +10,7 @@ export default ({ data }) => {
       className={styles.card}
     >
       <h2>{title}</h2>
-      <p>{content}</p>
+      <p>{content.split('\n')[0]}</p>
     </a>
   );
 };
