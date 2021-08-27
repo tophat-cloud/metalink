@@ -18,11 +18,11 @@ export default () => {
   return (
     <>
       <h1 className={styles.title}>
-        Welcome to <a href="https://nextjs.org">MetaLink!</a>
+        Welcome to <a>MetaLink!</a>
       </h1>
 
       <p className={styles.description}>
-        Start your meta world
+      Start your metaverse with the familiar way
       </p>
 
       <div className={styles.grid}>
